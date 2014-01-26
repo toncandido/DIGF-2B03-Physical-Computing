@@ -1,0 +1,60 @@
+/* 
+ OCAD U -  DIGF-2B03-Physical-Computing
+ Student Ton Candido 2519551
+ LAB 2
+3 buttons allow you to change the blinking of a single LED. 
+Base code from Arduino Cookbook 7.1 Connecting and Using LEDs and Arduino.cc Button State Change Detection
+ 
+ */
+
+int ledPin = 11; // choose the pin for the LED
+
+int inPin = 2;   // choose the input pin (for a pushbutton)
+int inPin2 = 3;   // choose the input pin (for a pushbutton)
+int inPin3 = 4;   // choose the input pin (for a pushbutton)
+
+int val = 0;     // variable for reading the pin status
+int val2 = 0;     // variable for reading the pin status
+int val3 = 0;     // variable for reading the pin status
+
+void setup() {
+  pinMode(ledPin, OUTPUT);  // declare LED as output
+  pinMode(inPin, INPUT);    // declare pushbutton as input
+  pinMode(inPin2, INPUT);    // declare pushbutton as input
+  pinMode(inPin3, INPUT);    // declare pushbutton as input
+
+}
+
+void loop(){
+
+  val = digitalRead(inPin);  // read input value
+  val2 = digitalRead(inPin2);  // read input value
+  val3 = digitalRead(inPin3);  // read input value
+
+
+  if (val == HIGH) {
+    blinkLED1(ledPin, 2000);
+  }
+
+  if (val2 == HIGH) {
+    blinkLED1(ledPin, 200);
+  }
+
+  if (val3 == HIGH) {
+    blinkLED1(ledPin, 1);
+  }
+}
+
+void blinkLED1(int pin, int duration) {
+
+  digitalWrite(pin, HIGH);
+  delay(duration/4); 
+  digitalWrite(pin, LOW); 
+  delay(duration/4);
+
+}
+
+
+
+
+
