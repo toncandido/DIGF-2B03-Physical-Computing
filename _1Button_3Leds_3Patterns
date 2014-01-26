@@ -1,0 +1,78 @@
+/* 
+ OCAD U -  DIGF-2B03-Physical-Computing
+ Student Ton Candido 2519551
+ LAB 2
+ 1 button can be used to change between 3 or more blinking patterns of multiple LEDs
+ Base code from Arduino Cookbook 7.1 Connecting and Using LEDs and Arduino.cc Button State Change Detection
+ 
+ */
+
+int ledPin = 13; // choose the pin for the LED
+int ledPin2 = 12; // choose the pin for the LED
+int ledPin3 = 11; // choose the pin for the LED
+
+int inPin = 2;   // choose the input pin (for a pushbutton)
+int val = 0;     // variable for reading the pin status
+int lastVal = 0;
+int pushes = 0;
+
+void setup() {
+  pinMode(ledPin, OUTPUT);  // declare LED as output
+  pinMode(ledPin2, OUTPUT);  // declare LED as output
+  pinMode(ledPin3, OUTPUT);  // declare LED as output
+  pinMode(inPin, INPUT);    // declare pushbutton as input
+
+}
+
+void loop(){
+
+  val = digitalRead(inPin);  // read input value
+  if (val != lastVal) {        // check if the input is HIGH (button released)
+    if (val == HIGH) {
+      pushes++; 
+    }
+  }
+
+  lastVal = digitalRead(inPin);
+
+  if (pushes >= 4) {
+    pushes = 0;
+  }
+
+  if (pushes == 0) {
+
+    blinkLED1(ledPin, 2000);
+    blinkLED1(ledPin2, 500);
+    blinkLED1(ledPin3, 400);
+  }
+
+  else if (pushes == 1) {
+
+    blinkLED1(ledPin, 20);
+    blinkLED1(ledPin2, 30);
+    blinkLED1(ledPin3, 30);
+  }
+
+  else if (pushes == 2) {
+
+    blinkLED1(ledPin, 200);
+    blinkLED1(ledPin2, 100);
+    blinkLED1(ledPin3, 1000);
+  }
+
+  else if (pushes == 3) {
+
+    blinkLED1(ledPin, 1);
+    blinkLED1(ledPin2, 1);
+    blinkLED1(ledPin3, 1);
+  }
+}
+
+void blinkLED1(int pin, int duration) {
+
+  digitalWrite(pin, HIGH);
+  delay(duration/4); 
+  digitalWrite(pin, LOW); 
+  delay(duration/4);
+
+}
