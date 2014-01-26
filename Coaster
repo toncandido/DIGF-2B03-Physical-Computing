@@ -1,0 +1,43 @@
+/* 
+ OCAD U -  DIGF-2B03-Physical-Computing
+ Student Ton Candido 2519551
+ LAB 2
+ DIY switch out coaster interface with conductive materials. 
+ Base code from Arduino Cookbook 7.1 Connecting and Using LEDs and Arduino.cc Button State Change Detection
+ 
+ */
+
+int ledPin = 13; // choose the pin for the LED
+int ledPin2 = 12; // choose the pin for the LED
+int ledPin3 = 11; // choose the pin for the LED
+
+int inPin = 2;   // choose the input pin (for a pushbutton)
+int val = 0;     // variable for reading the pin status
+
+void setup() {
+  pinMode(ledPin, OUTPUT);  // declare LED as output
+  pinMode(ledPin2, OUTPUT);  // declare LED as output
+  pinMode(ledPin3, OUTPUT);  // declare LED as output
+  pinMode(inPin, INPUT);    // declare pushbutton as input
+}
+
+void loop(){
+
+  val = digitalRead(inPin);  // read input value
+       // check if the input is HIGH (button released)
+    if (val == HIGH) {
+      blinkLED1(ledPin3, 40);
+      blinkLED1(ledPin2, 405);
+      blinkLED1(ledPin, 905);
+  }
+}
+
+void blinkLED1(int pin, int duration) {
+
+  digitalWrite(pin, HIGH);
+  delay(duration/4); 
+  digitalWrite(pin, LOW); 
+  delay(duration/4);
+
+}
+
